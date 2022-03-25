@@ -1,0 +1,10 @@
+.action-card {
+  margin-bottom: 25px;
+  padding: 5px 10px;
+  font-weight: bolder;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #3564ff;
+  color: white;
+  cursor: pointer;
+}
