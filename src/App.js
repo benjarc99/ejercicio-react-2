@@ -5,7 +5,7 @@ import "./components/Cards.css";
 import Loader from "./components/Loader";
 
 function App() {
-  const [dataBase, setDataBase] = useState(null);
+  const [users, setUsers] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -18,8 +18,9 @@ function App() {
       .then((res) => {
         let data = res.data;
 
-        setDataBase(data.data);
+        setUsers(data.data);
         setLoading(false);
+        console.log(data.data);
       })
       .catch((err) => {
         let msgError = {
@@ -34,7 +35,15 @@ function App() {
     <div className="main-cards">
       {loading && <Loader />}
       <section className="container-cards">
-        {dataBase && dataBase.map((el, i) => <Card el={el} i={i} />)}
+        {users &&
+          users.map((user, i) => (
+            <Card
+              name={`${user.first_name} ${user.last_name}`}
+              img={user.avatar}
+              email={user.email}
+              key={i}
+            />
+          ))}
       </section>
       {error && (
         <div className="msg-error">{`Error ${error.status}: ${error.statusText}`}</div>
